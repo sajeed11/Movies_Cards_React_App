@@ -10,6 +10,11 @@
 :root {
   --font-roboto: "Roboto Slab", serif;
   --font-raleway: "Raleway", sans-serif;
+  --color-used : background: linear-gradient(
+    90deg,
+    rgba(249, 211, 180, 1) 0%,
+    rgba(249, 211, 180, 0) 100%
+  );
 }
 
 body {
@@ -18,12 +23,60 @@ body {
 }
 
 .app {
-  padding: 4rem;
-
+  padding-bottom: 2rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  margin-top: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+.mainContainer nav {
+  position: relative;
+  height: 50px;
+  margin-bottom: 60px;
+  background: 
+    rgba(249, 211, 180, 0);
+  border-radius: 8px;
+  font-size: 0;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  line-height: 50px;
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  text-align: center;
+  transition: 0.5s;
+  border-bottom: rgba(249, 211, 180, 0) 5px solid;
+}
+
+/* If u look careffuly you can understood the work right! */
+nav a:nth-child(1) {
+  width: 250px;
+  border-bottom-left-radius: 8px;
+  
+}
+
+nav a:nth-child(2) {
+  width: 250px;
+}
+
+nav a:nth-child(3) {
+  width: 250px;
+}
+
+nav a:nth-child(4) {
+  width: 250px;
+  border-bottom-right-radius: 8px;
+}
+
+nav a:hover {
+  border-color: rgba(249, 211, 180);  
 }
 
 h1 {
@@ -38,6 +91,245 @@ h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   width: fit-content;
+}
+
+
+.sideBar{
+  text-align: center;
+  position: relative;
+  width: 20%;
+  font-size: 15px;
+  margin-left: 5px;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+  line-height: 50px;
+  background: 
+    rgba(249, 211, 180, 0);
+  border-radius: 8px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.SidebarList {
+  width: 100%;
+  height: auto;
+  padding: 0;
+}
+
+.SidebarList .row {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-bottom: rgba(249, 211, 180, 0) 5px solid;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: 0.5s;
+}
+
+.SidebarList .row-open{
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-bottom: rgba(249, 211, 180, 0) 5px solid;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: 0.5s;
+}
+
+.SidebarList .row .row-main{
+  width: 100%;
+  height: 80px;
+  display: flex;  
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-bottom: rgba(249, 211, 180, 0) 5px solid;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: 0.5s;
+}
+
+.SidebarList .row-open .row-main{
+  width: 100%;
+  height: 80px;
+  display: flex;  
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-bottom: rgba(249, 211, 180, 0) 5px solid;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: 0.5s;
+}
+
+.SidebarList .row:hover{
+  border-color: rgba(249, 211, 180);
+  cursor: pointer;
+}
+.SidebarList .row-open:hover{
+  border-color: rgba(249, 211, 180);
+  cursor: pointer;
+}
+
+.SidebarList #active {
+  border-color: rgba(249, 211, 180);
+}
+.row #icon{
+  flex: 30%;
+  display: grid;
+  place-items: center;
+}
+
+.row-open #icon{
+  flex: 30%;
+  display: grid;
+  place-items: center;
+}
+
+.row .row-main #icon{
+  flex: 30%;
+  display: grid;
+  place-items: center;
+}
+
+.row #title{
+  flex: 70%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row .row-main  #title{
+  flex: 70%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.row-open #title{
+  flex: 70%;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row .row-main  #toggle{
+  cursor: pointer;
+  transition: transform 0.4s;
+  align-items: center;
+  display: flex;
+}
+.row-open  #toggle{
+  transform: rotate(180deg);
+}
+.row .row-content{
+  padding-top: .25rem;
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
+.row-open .row-content {
+  height: 120px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.SidebarList .row-open .row-content  ul{
+  width: 100%;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+}
+
+.SidebarList .row-open .row-content  li{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0%;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: 0.5s;
+}
+
+.SidebarList .row-open .row-content  li:hover{
+  background: 
+    rgba(249, 211, 180, 0.1);
+    border-radius: 8px;
+}
+
+.subs {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 60px;
+  list-style-type: none;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.subs #label-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 60px;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+
+input{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 20%;
+}
+
+.mainContainer {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  align-items: center;
+  flex-direction: column;
 }
 
 .search {
