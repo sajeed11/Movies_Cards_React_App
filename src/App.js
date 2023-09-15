@@ -5,23 +5,25 @@ import SearchIcon from "./search.svg";
 import MovieCard from "./MovieCard";
 import axios from "axios";
 import SideBar from "./SideBar";
-
+import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import AboutPage from "./AboutPage.js";
+import Contact from "./Contact";
 //const apiKey = "9c0c8c12";
 
 const API_URL = "http://www.omdbapi.com?apikey=9c0c8c12";
 
-const movie1 = {
-  Title: "Superman, Spiderman or Batman",
-  Year: "2011",
-  imdbID: "tt2084949",
-  Type: "movie",
-  Poster:
-    "https://m.media-amazon.com/images/M/MV5BMjQ4MzcxNDU3N15BMl5BanBnXkFtZTgwOTE1MzMxNzE@._V1_SX300.jpg",
-};
+// const movie1 = {
+//   Title: "Superman, Spiderman or Batman",
+//   Year: "2011",
+//   imdbID: "tt2084949",
+//   Type: "movie",
+//   Poster:
+//     "https://m.media-amazon.com/images/M/MV5BMjQ4MzcxNDU3N15BMl5BanBnXkFtZTgwOTE1MzMxNzE@._V1_SX300.jpg",
+// };
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const searchMovie = async (title = null) => {
+  const searchMovie = async (title) => {
     if (title) {
       const response = await fetch(`${API_URL}&s=${title}`);
       const data = await response.json();
@@ -54,44 +56,57 @@ const App = () => {
 
   // Call this function in the useEffect to fetch and handle data
   useEffect(() => {
-    searchMovie(null); // By default, it sorts by popularity
+    searchMovie(); // By default, it sorts by popularity
   }, []);
 
   return (
     <div className="app">
       <SideBar></SideBar>
       <div className="mainContainer">
-        <nav>
-          <a href="Home">Home</a>
-          <a href="About">About</a>
-          <a href="Blog">Blog</a>
-          <a href="Contact">Contact</a>
-        </nav>
+        <Router>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/blog">Blog</Link>
+            <Link to="/contact">Contact</Link>
+          </nav>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <h1>Movie Land</h1>
+                  <div className="search">
+                    <input
+                      placeholder="Search for a Movie"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <img
+                      src={SearchIcon}
+                      alt="search"
+                      onClick={() => searchMovie(searchTerm)}
+                    />
+                  </div>
+                  {movies.length > 0 ? (
+                    <div className="container">
+                      {movies.map((movie) => (
+                        <MovieCard movie={movie} />
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="empty">
+                      <h2>No movies found</h2>
+                    </div>
+                  )}
+                </>
+              }
+            />
 
-        <h1>Movie Land</h1>
-        <div className="search">
-          <input
-            placeholder="Search for a Movie"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <img
-            src={SearchIcon}
-            alt="search"
-            onClick={() => searchMovie(searchTerm)}
-          />
-        </div>
-        {movies.length > 0 ? (
-          <div className="container">
-            {movies.map((movie) => (
-              <MovieCard movie={movie} />
-            ))}
-          </div>
-        ) : (
-          <div className="empty">
-            <h2>No movies found</h2>
-          </div>
-        )}
+            <Route path="/about" element={<AboutPage></AboutPage>} />
+            <Route path="/contact" element={<Contact></Contact>} />
+          </Routes>
+        </Router>
       </div>
     </div>
   );
